@@ -1,0 +1,10 @@
+Assembly-CSharp.csproj
+FTL Inspired.sln
+.vscode/*
+Assets/Scenes.meta
+Assets/Scripts.meta
+Assets/Scenes/*
+Assets/Scripts/*.cs.meta
+Assets/Scripts/*.inputactions
+Assets/Scripts/*.inputactions.meta
+Library/*
