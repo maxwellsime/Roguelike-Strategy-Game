@@ -13,8 +13,7 @@ public class PartyController : MonoBehaviour
     private GameObject combatPauseObject;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         playerInputActions = new PlayerInputActions();
         combatPauseObject = GameObject.Find("Combat Pause");
         combatPauseObject.SetActive(false);
@@ -28,26 +27,27 @@ public class PartyController : MonoBehaviour
         HighlightMember(true);
     }
 
-    private void OnPartyMember1()
-    {
+    private void OnPartyMember1() {
         SelectPartyMember(party[0]);
         Debug.Log("Party member 1 selected");
     }
 
-    private void OnPartyMember2()
-    {
+    private void OnPartyMember2() {
         SelectPartyMember(party[1]);
         Debug.Log("Party member 1 selected");
     }
 
-    private void OnMove()
-    {
+    private void OnMove() {
         Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         selectedMember.GetComponent<MemberController>().Move(inputPosition);
     }
 
-    private void OnPause()
-    {
+    private void OnAttack() {
+        Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        selectedMember.GetComponent<MemberController>().Attack(inputPosition);
+    }
+
+    private void OnPause() {
         // Update is still called, FixedUpdate will not be when TimeScale = 0
         // Can use Update for options like decisions but FixedUpdate for spells/actions ? Make Spells inherently time-based with casting speed?
         if(Time.timeScale > 0) {
@@ -59,8 +59,7 @@ public class PartyController : MonoBehaviour
         }
     }
 
-    private void SelectPartyMember(GameObject character) 
-    {
+    private void SelectPartyMember(GameObject character) {
         if(character != selectedMember) {
             HighlightMember(false);
             selectedMember = character;

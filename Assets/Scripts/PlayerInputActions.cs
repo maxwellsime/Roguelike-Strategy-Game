@@ -62,6 +62,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3e2e714-b425-4859-bfed-2108bf643444"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Party Member 2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0869714-68cc-46b3-8db1-5c2864a33e71"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -120,6 +140,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Combat_Pause = m_Combat.FindAction("Pause", throwIfNotFound: true);
         m_Combat_PartyMember1 = m_Combat.FindAction("Party Member 1", throwIfNotFound: true);
         m_Combat_PartyMember2 = m_Combat.FindAction("Party Member 2", throwIfNotFound: true);
+        m_Combat_Attack = m_Combat.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,6 +206,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Combat_Pause;
     private readonly InputAction m_Combat_PartyMember1;
     private readonly InputAction m_Combat_PartyMember2;
+    private readonly InputAction m_Combat_Attack;
     public struct CombatActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -193,6 +215,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Combat_Pause;
         public InputAction @PartyMember1 => m_Wrapper.m_Combat_PartyMember1;
         public InputAction @PartyMember2 => m_Wrapper.m_Combat_PartyMember2;
+        public InputAction @Attack => m_Wrapper.m_Combat_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,6 +237,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PartyMember2.started += instance.OnPartyMember2;
             @PartyMember2.performed += instance.OnPartyMember2;
             @PartyMember2.canceled += instance.OnPartyMember2;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
         private void UnregisterCallbacks(ICombatActions instance)
@@ -230,6 +256,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PartyMember2.started -= instance.OnPartyMember2;
             @PartyMember2.performed -= instance.OnPartyMember2;
             @PartyMember2.canceled -= instance.OnPartyMember2;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
         public void RemoveCallbacks(ICombatActions instance)
@@ -253,5 +282,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnPartyMember1(InputAction.CallbackContext context);
         void OnPartyMember2(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
