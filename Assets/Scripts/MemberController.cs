@@ -1,16 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MemberController : MonoBehaviour
 {   
     private Vector2 desiredPosition;
     private float speed = 10f;
-    public static int damage = 1;
-    public static int range = 5;
+    public int damage = 1;
+    public int range = 5;
     public Status memberStatus;
     public IWeapon mainhand;
     public GameObject attackHitBox;
@@ -75,6 +70,6 @@ public class MeleeWeapon : IWeapon {
     }
 
     public void OnUse() {
-
+        
     }
 }

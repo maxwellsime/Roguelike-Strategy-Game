@@ -1,4 +1,6 @@
 /*
-!Assets/Scripts/*.cs
+!Assets
+Assets/Artwork
+Assets/Scenes
 *.meta
 *.inputactions
