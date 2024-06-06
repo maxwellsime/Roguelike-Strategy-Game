@@ -1,5 +1,4 @@
 /*
-!Assets/Scripts
-*.cs.meta
+!Assets/Scripts/
+*.meta
 *.inputactions
-*.inputactions.meta
