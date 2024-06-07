@@ -1,19 +1,20 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MemberController : MonoBehaviour
 {   
     private Vector2 desiredPosition;
     private float speed = 10f;
     public int damage = 1;
-    public int range = 5;
+    public int range = 0;
     public Status memberStatus;
-    public IWeapon mainhand;
+    public IWeapon weapon;
     public GameObject attackHitBox;
 
 
     private void Start() {
         desiredPosition = transform.position;
-        mainhand = new MeleeWeapon(damage, "Sword", range);
+        weapon = new MeleeWeapon(damage, range);
         memberStatus = Status.NEUTRAL;
         attackHitBox = this.gameObject.transform.Find("AttackHitBox").gameObject;
     }
@@ -36,7 +37,16 @@ public class MemberController : MonoBehaviour
         Debug.Log("Attack!");
         desiredPosition = this.transform.position;
         memberStatus = Status.ATTACKING;
-        attackHitBox.transform.position = inputPosition; // Have to make relative to member object depending on range value
+        
+        Vector2 attackVector;
+        if(weapon.range == 0) {
+            attackVector = (Vector2)this.transform.position + inputPosition.normalized;
+        } else {
+            attackVector = inputPosition;
+            // Make based on ranged input that needs to be normalized based on resolution??
+        }
+        
+        attackHitBox.transform.position = attackVector;
         EnableAttacking(true);
     }
 
@@ -54,22 +64,15 @@ public class MemberController : MonoBehaviour
 }
 
 // Temporary location for class before understanding the appropriate method of implementation.
-public interface IWeapon {
-    public void OnUse();
+public abstract class IWeapon {
+    public int range;
+    public int weaponID;
+    public int damage;
 }
 
 public class MeleeWeapon : IWeapon {
-    public int damage;
-    public string type; 
-    public int range;
-
-    public MeleeWeapon(int damage, string type, int range) {
+    public MeleeWeapon(int damage, int range) {
         this.damage = damage;
-        this.type = type;
         this.range = range;
-    }
-
-    public void OnUse() {
-        
     }
 }
