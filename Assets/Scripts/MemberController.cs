@@ -1,26 +1,64 @@
+using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class MemberController : MonoBehaviour
-{   
+[System.Serializable]
+public struct MemberStats {
+    public int health;
+    public int stamina;
+    public float speed;
+    public int agility;
+    public int strength;
+    public int intellect;
+
+    public MemberStats(int health, int stamina, float speed, int agility, int strength, int intellect) {
+        this.health = health;
+        this.stamina = stamina;
+        this.speed = speed;
+        this.agility = agility;
+        this.strength = strength;
+        this.intellect = intellect;
+    }
+}
+
+[System.Serializable]
+public struct MemberEquipped {
+    public WeaponItem weapon;
+    public ArmourItem head;
+    public ArmourItem torso;
+    public ArmourItem hands;
+    public ArmourItem legs;
+    public ArmourItem feet;
+
+    public MemberEquipped(WeaponItem weapon = null, ArmourItem head = null, ArmourItem torso = null, ArmourItem hands = null, ArmourItem legs = null, ArmourItem feet = null) {
+        this.weapon = weapon;
+        this.head = head;
+        this.torso = torso;
+        this.hands = hands;
+        this.legs = legs;
+        this.feet = feet;
+    }
+}
+
+public class MemberController : MonoBehaviour {   
     private Vector2 desiredPosition;
     private float speed = 10f;
-    public int damage = 1;
-    public int range = 0;
+    public MemberStats stats;
+    public MemberEquipped equipped;
     public Status memberStatus;
-    public IWeapon weapon;
     public GameObject attackHitBox;
 
 
     private void Start() {
         desiredPosition = transform.position;
-        weapon = new MeleeWeapon(damage, range);
         memberStatus = Status.NEUTRAL;
         attackHitBox = this.gameObject.transform.Find("AttackHitBox").gameObject;
+        stats = new MemberStats(100, 100, 10f, 0, 0, 0);
+        tempWeapon = WeaponItem();
+        equipped = new MemberEquipped();
     }
 
     private void Update() {
-        this.transform.position = Vector2.MoveTowards(transform.position, desiredPosition, speed * Time.deltaTime);
+        this.transform.position = Vector2.MoveTowards(transform.position, desiredPosition, stats.speed * Time.deltaTime);
     }
 
     public void Move(Vector2 inputPosition) {
@@ -60,19 +98,5 @@ public class MemberController : MonoBehaviour
         NEUTRAL,
         ATTACKING,
         IMMOBILIZED
-    }
-}
-
-// Temporary location for class before understanding the appropriate method of implementation.
-public abstract class IWeapon {
-    public int range;
-    public int weaponID;
-    public int damage;
-}
-
-public class MeleeWeapon : IWeapon {
-    public MeleeWeapon(int damage, int range) {
-        this.damage = damage;
-        this.range = range;
     }
 }
