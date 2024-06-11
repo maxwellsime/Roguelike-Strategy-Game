@@ -15,7 +15,7 @@ public enum ItemRarity : int {
 }
 
 public abstract class Item : ScriptableObject {
-    private int id; // Maybe this will be useful?
+    private int id;
 
     [Header("Item Data")]
     [SerializeField] private new string name = "New Item";
@@ -26,6 +26,8 @@ public abstract class Item : ScriptableObject {
     [Min(0)] private int sellPrice = 1;
     [Min(0)] private int maxStack = 1;
 
+
+    public int Id => id;
     public string Name => name;
     public ItemType Type => type;
     public ItemRarity Rarity => rarity;

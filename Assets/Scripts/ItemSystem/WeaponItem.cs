@@ -1,13 +1,14 @@
 using System;
 using System.Text;
 
+[System.Serializable]
 public class WeaponItem : Item {
     private int damage = 1;
     private int range = 0;
-    private string effect = null;       // make effect class
+    private Effect effect = null;
     public int Damage => damage;
     public int Range => range;
-    public string Effect => effect;
+    public Effect Effect => effect;
 
     public override string GetDisplayText()
     {

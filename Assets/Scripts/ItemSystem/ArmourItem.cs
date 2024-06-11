@@ -1,10 +1,11 @@
 using System.Text;
 
+[System.Serializable]
 public class ArmourItem : Item {
     private int defense;
-    private string effect = null;   // Potentially new type when decided upon at a later date.
+    private Effect effect = null;
     public int Defense => defense;
-    public string Effect => effect;
+    public Effect Effect => effect;
 
     public override string GetDisplayText()
     {

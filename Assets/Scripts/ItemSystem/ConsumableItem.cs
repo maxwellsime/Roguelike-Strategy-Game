@@ -2,6 +2,10 @@ using System.Text;
 
 [System.Serializable]
 public class ConsumableItem : Item {
+
+    private Effect effect;
+    public Effect Effect => effect;
+
     public override string GetDisplayText()
     {
         StringBuilder builder = new StringBuilder();
@@ -9,6 +13,7 @@ public class ConsumableItem : Item {
         builder.Append(Name).AppendLine();
         builder.Append(Type).AppendLine();
         builder.Append(Description).AppendLine();
+        builder.Append(Effect).AppendLine();
         builder.Append(SellPrice).AppendLine();
         builder.Append(MaxStack).AppendLine();
 
