@@ -53,8 +53,8 @@ public class MemberController : MonoBehaviour {
         memberStatus = Status.NEUTRAL;
         attackHitBox = this.gameObject.transform.Find("AttackHitBox").gameObject;
         stats = new MemberStats(100, 100, 10f, 0, 0, 0);
-        tempWeapon = WeaponItem();
-        equipped = new MemberEquipped();
+        WeaponItem tempWeapon = new WeaponItem();
+        equipped = new MemberEquipped(tempWeapon);
     }
 
     private void Update() {
