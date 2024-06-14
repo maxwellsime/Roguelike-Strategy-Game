@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class ConsumableItem : Item {
 
-    [SerializeField] public Effect effect { get; private set; } = null;
+    [SerializeField] public Effect Effect { get; private set; } = null;
 
     public override string GetDisplayText()
     {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new();
 
-        builder.Append(name).AppendLine();
-        builder.Append(description).AppendLine();
-        builder.Append(effect).AppendLine();
-        builder.Append(sellPrice).AppendLine();
-        builder.Append(maxStack).AppendLine();
+        builder.Append(Name).AppendLine();
+        builder.Append(Description).AppendLine();
+        builder.Append(Effect).AppendLine();
+        builder.Append(SellPrice).AppendLine();
+        builder.Append(MaxStack).AppendLine();
 
         return builder.ToString();
     }
