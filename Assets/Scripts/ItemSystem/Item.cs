@@ -1,39 +1,13 @@
 using UnityEngine;
 
-public enum ItemType {
-    EQUIPPABLE,
-    CONSUMABLE,
-    MATERIAL
-}
-
-public enum ItemRarity : int {
-    COMMON,
-    UNCOMMON,
-    RARE,
-    EPIC,
-    LEGENDARY
-}
-
 public abstract class Item : ScriptableObject {
-    private int id;
-
-    [Header("Item Data")]
-    [SerializeField] private new string name = "New Item";
-    [SerializeField] private ItemType type = ItemType.MATERIAL;
-    [SerializeField] private ItemRarity rarity = ItemRarity.COMMON;
-    [SerializeField] private Sprite icon = null;
-    [SerializeField] private string description = "";
-    [Min(0)] private int sellPrice = 1;
-    [Min(0)] private int maxStack = 1;
-
-
-    public int Id => id;
-    public string Name => name;
-    public ItemType Type => type;
-    public ItemRarity Rarity => rarity;
-    public string Description => description;
-    public int SellPrice => sellPrice;
-    public int MaxStack => maxStack;
+    [SerializeField] public int id { get; private set; }
+    [SerializeField] public new string name { get; private set; } = "New Item";
+    [SerializeField] public ItemRarity rarity { get; private set; }
+    [SerializeField] public Sprite icon { get; private set; } = null;
+    [SerializeField] public string description { get; private set; } = "";
+    [SerializeField] public int sellPrice { get; private set; } = 1;
+    [SerializeField] public int maxStack { get; private set; } = 1;
 
     public abstract string GetDisplayText();
 }

@@ -1,23 +1,20 @@
 using System.Text;
+using UnityEngine;
 
-[System.Serializable]
 public class ArmourItem : Item {
-    private int defense;
-    private Effect effect = null;
-    public int Defense => defense;
-    public Effect Effect => effect;
+    [SerializeField] public int defense { get; private set; }
+    [SerializeField] public Effect effect { get; private set; } = null;
 
     public override string GetDisplayText()
     {
         StringBuilder builder = new StringBuilder();
 
-        builder.Append(Name).AppendLine();
-        builder.Append(Defense).AppendLine();
-        if(Effect != null) 
-            builder.Append(Effect).AppendLine();
-        builder.Append(Type).AppendLine();
-        builder.Append(Description).AppendLine();
-        builder.Append(SellPrice).AppendLine();
+        builder.Append(name).AppendLine();
+        builder.Append(defense).AppendLine();
+        if(effect != null) 
+            builder.Append(effect).AppendLine();
+        builder.Append(description).AppendLine();
+        builder.Append(sellPrice).AppendLine();
 
         return builder.ToString();
     }

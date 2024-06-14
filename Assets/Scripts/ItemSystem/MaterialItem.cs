@@ -1,18 +1,23 @@
 using System.Text;
+using UnityEngine;
 
-[System.Serializable]
 public class MaterialItem : Item {
+    [SerializeField] public MaterialType type { get; private set; } = MaterialType.JUNK;
+
     public override string GetDisplayText()
     {
         StringBuilder builder = new StringBuilder();
 
-        builder.Append(Name).AppendLine();
-        builder.Append(Type).AppendLine();
-        builder.Append(Description).AppendLine();
-        builder.Append(SellPrice).AppendLine();
-        builder.Append(MaxStack).AppendLine();
+        builder.Append(name).AppendLine();
+        builder.Append(description).AppendLine();
+        builder.Append(sellPrice).AppendLine();
+        builder.Append(maxStack).AppendLine();
 
         return builder.ToString();
     }
 }
 
+public enum MaterialType {
+    JUNK,
+    QUEST
+}

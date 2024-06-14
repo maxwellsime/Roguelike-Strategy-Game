@@ -1,24 +1,19 @@
-using System;
 using System.Text;
+using UnityEngine;
 
-[System.Serializable]
 public class WeaponItem : Item {
-    private int damage = 1;
-    private int range = 0;
-    private Effect effect = null;
-    public int Damage => damage;
-    public int Range => range;
-    public Effect Effect => effect;
-
+    [SerializeField] public int damage { get; private set; } = 1;
+    [SerializeField] public int range { get; private set; } = 0;
+    [SerializeField] public Effect effect { get; private set; } = null;
+    [SerializeField] public new int maxStack { get; private set; } = 1;
+    
     public override string GetDisplayText()
     {
         StringBuilder builder = new StringBuilder();
 
-        builder.Append(Name).AppendLine();
-        builder.Append(Type).AppendLine();
-        builder.Append(Description).AppendLine();
-        builder.Append(SellPrice).AppendLine();
-        builder.Append(MaxStack).AppendLine();
+        builder.Append(name).AppendLine();
+        builder.Append(description).AppendLine();
+        builder.Append(sellPrice).AppendLine();
 
         return builder.ToString();
     }
