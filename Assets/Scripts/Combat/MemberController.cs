@@ -77,7 +77,7 @@ public class MemberController : MonoBehaviour {
         memberStatus = Status.ATTACKING;
         
         Vector2 attackVector;
-        if(weapon.range == 0) {
+        if(equipped.weapon.Range == 0) {
             attackVector = (Vector2)this.transform.position + inputPosition.normalized;
         } else {
             attackVector = inputPosition;
@@ -93,9 +93,9 @@ public class MemberController : MonoBehaviour {
     }
 
     public enum Status {
+        NEUTRAL,
         MOVING,
         CHANNELING,
-        NEUTRAL,
         ATTACKING,
         IMMOBILIZED
     }

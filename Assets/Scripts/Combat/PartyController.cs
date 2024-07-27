@@ -5,8 +5,7 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.InputSystem;
 using UnityEditor.U2D.Animation;
 
-public class PartyController : MonoBehaviour
-{
+public class PartyController : MonoBehaviour {
     public List<GameObject> party = new List<GameObject>();
     public GameObject selectedMember = null;
     private PlayerInputActions playerInputActions;
