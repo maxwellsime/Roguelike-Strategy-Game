@@ -10,12 +10,14 @@ public class PartyController : MonoBehaviour {
     public GameObject selectedMember = null;
     private PlayerInputActions playerInputActions;
     private GameObject combatPauseObject;
+    private GameObject arena;
 
     // Start is called before the first frame update
     void Start() {
         playerInputActions = new PlayerInputActions();
         combatPauseObject = GameObject.Find("Combat Pause");
         combatPauseObject.SetActive(false);
+        arena = GameObject.Find("Arena");
 
         // party should be saved beforehand and initialized into this array
         party.Add(GameObject.Find("Character 1"));
@@ -37,8 +39,9 @@ public class PartyController : MonoBehaviour {
     }
 
     private void OnMove() {
+        Bounds arenaBounds = arena.GetComponent<SpriteRenderer>().bounds;
         Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        selectedMember.GetComponent<MemberController>().Move(inputPosition);
+        selectedMember.GetComponent<MemberController>().Move(inputPosition, arenaBounds);
     }
 
     private void OnAttack() {

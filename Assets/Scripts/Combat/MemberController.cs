@@ -61,10 +61,18 @@ public class MemberController : MonoBehaviour {
         this.transform.position = Vector2.MoveTowards(transform.position, desiredPosition, stats.speed * Time.deltaTime);
     }
 
-    public void Move(Vector2 inputPosition) {
+    public void Move(Vector2 inputPosition, Bounds arenaBounds) {
         if(memberStatus != Status.IMMOBILIZED) {
+            Vector2 memberSize  = this.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().bounds.size;
+            Vector2 arenaMaximum = arenaBounds.max;
+            Vector2 arenaMinimum = arenaBounds.min;
+            Vector2 clampedPosition = new(
+                Mathf.Clamp(inputPosition.x, arenaMinimum.x + memberSize.x / 2, arenaMaximum.x - memberSize.x / 2),
+                Mathf.Clamp(inputPosition.y, arenaMinimum.y + memberSize.y / 2, arenaMaximum.y - memberSize.y / 2)
+            );
+            
             memberStatus = Status.MOVING;
-            desiredPosition = inputPosition;
+            desiredPosition = clampedPosition;
             EnableAttacking(false);
         } else {
             Debug.Log("Party member cannot move when immobilized.");
