@@ -8,13 +8,11 @@ using UnityEditor.U2D.Animation;
 public class PartyController : MonoBehaviour {
     public List<GameObject> party = new List<GameObject>();
     public GameObject selectedMember = null;
-    private PlayerInputActions playerInputActions;
+    private PlayerInputActions.CombatActions inputActions = new PlayerInputActions().Combat;
     private GameObject combatPauseObject;
     private GameObject arena;
 
-    // Start is called before the first frame update
     void Start() {
-        playerInputActions = new PlayerInputActions();
         combatPauseObject = GameObject.Find("Combat Pause");
         combatPauseObject.SetActive(false);
         arena = GameObject.Find("Arena");
@@ -41,12 +39,12 @@ public class PartyController : MonoBehaviour {
     private void OnMove() {
         Bounds arenaBounds = arena.GetComponent<SpriteRenderer>().bounds;
         Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        selectedMember.GetComponent<MemberController>().Move(inputPosition, arenaBounds);
+        selectedMember.GetComponent<PartyMemberController>().Move(inputPosition, arenaBounds);
     }
 
     private void OnAttack() {
         Vector2 inputPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        selectedMember.GetComponent<MemberController>().Attack(inputPosition);
+        selectedMember.GetComponent<PartyMemberController>().Attack(inputPosition);
     }
 
     private void OnPause() {

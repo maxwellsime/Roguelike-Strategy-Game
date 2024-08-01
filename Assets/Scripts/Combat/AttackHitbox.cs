@@ -6,7 +6,7 @@ public class AttackHitbox : MonoBehaviour
     public Collider2D attackCollider;
 
     public void Start() {
-        attackDamage = this.gameObject.transform.GetComponentInParent<MemberController>().equipped.weapon.Damage;
+        attackDamage = this.gameObject.transform.GetComponentInParent<PartyMemberController>().equipped.weapon.Damage;
     }
 
     public void OnCollisionEnter2D(Collision2D col) {
