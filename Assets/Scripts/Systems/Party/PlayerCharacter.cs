@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Diagnostics;
+using Unity.VisualScripting;
 
 public class PlayerCharacter {
-    public PlayerCharacterStats Stats { get; private set; }
-    public PlayerCharacterEquipped Equipped { get; private set; }
     public List<Effect> StatEffectsList { get; private set; }
     public List<Effect> TimedEffectsList { get; private set; }
     public List<Effect> PermenantEffectsList { get; private set; }
+    private PlayerCharacterStats Stats;
+    private PlayerCharacterEquipped Equipped;
 
     public PlayerCharacter() {
         Stats = new PlayerCharacterStats(1, 1, 1, 1, 100, 100, 100, 1000, 100, 10f);
@@ -15,49 +15,70 @@ public class PlayerCharacter {
         Equipped = new PlayerCharacterEquipped(tempWeapon);
     }
 
+    public PlayerCharacterStats GetPlayerStats() {
+        CalculateEffectiveStats();
+        return Stats;
+    }
+
     // General Stats
-    public void changeStrength(int value) {
+    public void ChangeStrength(int value) {
         Stats.strength += value;
     }
 
-    public void changeAgility(int value) {
+    public int GetStrength() {
+        return Stats.strength;
+    }
+
+    public void ChangeAgility(int value) {
         Stats.agility += value;
     }
 
-    public void changeIntellect(int value) {
+    public int GetAgility() {
+        return Stats.agility;
+    }
+
+    public void ChangeIntellect(int value) {
         Stats.intellect += value;
     }
 
-    public void changeEndurance(int value) {
+    public int GetIntellect() {
+        return Stats.intellect;
+    }
+
+    public void ChangeEndurance(int value) {
         Stats.endurance += value;
     }
 
+    public int GetEndurance() {
+        return Stats.endurance;
+    }
+
     // Party stats
-    public void changeSatiation(int value) {
+    public void ChangeSatiation(int value) {
         Stats.satiation += value;
         // Attribute handling??
         switch(Stats.satiation) {
             case 0:
-                changeHappiness(-10); 
+                ChangeHappiness(-10); 
                 // also add damage to hp on update within overworld controller
                 break;            
             case < 25:
-                changeHappiness(1);
+                ChangeHappiness(1);
                 break;
         }
     }
 
-    public void changeHappiness(int value) {
+    public void ChangeHappiness(int value) {
         Stats.happiness += value;
         // interact with negative satisfaction, potential abandon party at next settlement
     }
 
-    public void changeStamina(int value) {
+    public void ChangeStamina(int value) {
         Stats.stamina += value;
     }
 
     // Combat Stats
-    public bool changeHealth(int value) {
+    public bool ChangeHealth(int value) {
         Stats.health += value;
 
         if(Stats.health <= 0) {
@@ -67,7 +88,7 @@ public class PlayerCharacter {
         }
     }
 
-    public bool changeMana(int value) {
+    public bool ChangeMana(int value) {
         int potentialMana = Stats.mana + value;
     
         if(potentialMana < 0) {
@@ -78,29 +99,29 @@ public class PlayerCharacter {
         }
     }
 
-    public void changeSpeed(float value) {
-        Stats.agility = Stats.agility + value;
+    public void ChangeSpeed(float value) {
+        Stats.speed += value;
     }
 
     // Else
-    public void changeEquipped(WeaponItem weapon = null, ArmourItem armour = null) {
+    public void ChangeEquipped(WeaponItem weapon = null, ArmourItem armour = null) {
         if(weapon != null) {
             Equipped.weapon = weapon;
         } else {
             switch(armour.slot) {
-                case ItemSlot.HEAD:
+                case ArmourItem.ItemSlot.HEAD:
                     Equipped.head = armour;
                     break;
-                case ItemSlot.TORSO:
+                case ArmourItem.ItemSlot.TORSO:
                     Equipped.torso = armour;
                     break;
-                case ItemSlot.HANDS:
+                case ArmourItem.ItemSlot.HANDS:
                     Equipped.hands = armour;
                     break;
-                case ItemSlot.LEGS:
+                case ArmourItem.ItemSlot.LEGS:
                     Equipped.legs = armour;
                     break;
-                case ItemSlot.FEET:
+                case ArmourItem.ItemSlot.FEET:
                     Equipped.feet = armour;
                     break;
                 default:
@@ -110,7 +131,11 @@ public class PlayerCharacter {
         }
     }
 
-    public void giveEffect(Effect effect) {
+    public WeaponItem GetWeapon() {
+        return Equipped.weapon;
+    }
+
+    public void GiveEffect(Effect effect) {
         if(effect.Type == EffectType.STAT) {
             StatEffectsList.Add(effect);
         }
@@ -125,6 +150,21 @@ public class PlayerCharacter {
     private void FixedUpdate() {
         if(TimedEffectsList.Count > 0) {
             // Time effect based on duration remove when it reaches counter, potentially array, maybe dictionary is too big, parallel lists??? test O
+            CalculateEffectiveStats(); // recalculate on effects diminishing, potentially have variables inputted to enable lower O
+        }
+    }
+
+    private void CalculateEffectiveStats() {
+        foreach(Effect effect in StatEffectsList) {
+            switch(effect.Target) {
+                case "strength":
+                    ChangeStrength(effect.Strength ?? 0);
+                    break;
+                case "agility":
+                    ChangeAgility(effect.Strength ?? 0);
+                    break;
+                    // Surely there is a better way of handling this...
+            }
         }
     }
 }

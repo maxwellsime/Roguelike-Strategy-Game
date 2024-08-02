@@ -1,21 +1,23 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class PartyMemberController : MonoBehaviour {   
     private Vector2 desiredPosition;
     public PlayerCharacter character;
     public Status status;
     public GameObject attackHitBox;
+    private WeaponItem equippedWeapon;  // calling this in both here and hitbox is redundant ??
+    private PlayerCharacterStats stats;
 
     private void Start() {
         desiredPosition = transform.position;
         status = Status.NEUTRAL;
         character = new PlayerCharacter(); //gameObject.GetComponent<Character>();
+        equippedWeapon = character.GetWeapon();
         attackHitBox = this.gameObject.transform.Find("AttackHitBox").gameObject;
     }
 
     private void Update() {
-        this.transform.position = Vector2.MoveTowards(transform.position, desiredPosition, character.Stats.speed * Time.deltaTime);
+        this.transform.position = Vector2.MoveTowards(transform.position, desiredPosition, stats.speed * Time.deltaTime);
     }
 
     public void Move(Vector2 inputPosition, Bounds arenaBounds) {
@@ -42,7 +44,7 @@ public class PartyMemberController : MonoBehaviour {
         status = Status.ATTACKING;
         
         Vector2 attackVector;
-        if(character.Equipped.weapon.Range == 0) {
+        if(equippedWeapon.Range == 0) {
             attackVector = (Vector2)this.transform.position + inputPosition.normalized;
         } else {
             attackVector = inputPosition;

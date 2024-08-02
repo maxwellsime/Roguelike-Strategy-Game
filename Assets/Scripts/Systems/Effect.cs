@@ -9,6 +9,8 @@ public class Effect : ScriptableObject {
     public Sprite Icon { get; private set; } = null;
     public string Description { get; private set; } = "";
     public float Duration { get; private set; } = 1;
+    public int? Strength { get; private set; } = null;
+    public string Target { get; private set; }
     private new string name = "New Effect";
 
     public string Name => Name;
