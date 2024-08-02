@@ -1,14 +1,15 @@
 using UnityEngine;
 using System.Text;
 
+[System.Serializable]
 public class Effect : ScriptableObject {
-    [SerializeField] public int Id { get; private set; }
-    [SerializeField] public EffectType Type { get; private set; } = EffectType.STAT;
-    [SerializeField] public int Rank { get; private set; } = 1;
-    [SerializeField] public Sprite Icon { get; private set; } = null;
-    [SerializeField] public string Description { get; private set; } = "";
-    [SerializeField] public float Duration { get; private set; } = 1;
-    [SerializeField] private new string name = "New Effect";
+    public int Id { get; private set; }
+    public EffectType Type { get; private set; } = EffectType.STAT;
+    public int Rank { get; private set; } = 1;
+    public Sprite Icon { get; private set; } = null;
+    public string Description { get; private set; } = "";
+    public float Duration { get; private set; } = 1;
+    private new string name = "New Effect";
 
     public string Name => Name;
 
@@ -31,4 +32,3 @@ public enum EffectType {
     HEAL,
     STAT
 }
-

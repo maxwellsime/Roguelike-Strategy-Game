@@ -4,6 +4,7 @@ using UnityEngine;
 public class ArmourItem : Item {
     [SerializeField] public int Defense { get; private set; }
     [SerializeField] public Effect Effect { get; private set; } = null;
+    public ItemSlot slot { get; private set; }
 
     public override string GetDisplayText()
     {
@@ -18,5 +19,12 @@ public class ArmourItem : Item {
 
         return builder.ToString();
     }
-}
 
+    public enum ItemSlot {
+        HEAD,
+        TORSO,
+        HANDS,
+        LEGS,
+        FEET
+    }
+}

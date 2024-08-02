@@ -15,7 +15,7 @@ public class PartyMemberController : MonoBehaviour {
     }
 
     private void Update() {
-        this.transform.position = Vector2.MoveTowards(transform.position, desiredPosition, character.stats.speed * Time.deltaTime);
+        this.transform.position = Vector2.MoveTowards(transform.position, desiredPosition, character.Stats.speed * Time.deltaTime);
     }
 
     public void Move(Vector2 inputPosition, Bounds arenaBounds) {
@@ -42,7 +42,7 @@ public class PartyMemberController : MonoBehaviour {
         status = Status.ATTACKING;
         
         Vector2 attackVector;
-        if(character.equipped.weapon.Range == 0) {
+        if(character.Equipped.weapon.Range == 0) {
             attackVector = (Vector2)this.transform.position + inputPosition.normalized;
         } else {
             attackVector = inputPosition;

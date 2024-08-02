@@ -19,7 +19,7 @@ public struct PlayerCharacterStats {
     // Combat
     public int health;
     public int mana;
-    [Min(1f)] public float speed;
+    public float speed;
 
     public PlayerCharacterStats(
         int agility,
