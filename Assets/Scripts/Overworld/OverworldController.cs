@@ -5,7 +5,8 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.InputSystem;
 using UnityEditor.U2D.Animation;
 
-public class OverworldController : MonoBehaviour {
+public class OverworldController : MonoBehaviour 
+{
     public Party party;
     public Status status;
     public float speed = 10f;

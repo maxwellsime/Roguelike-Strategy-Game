@@ -1,5 +1,6 @@
 [System.Serializable]
-public struct PlayerCharacterEquipped {
+public struct CharacterStats 
+{
     public WeaponItem weapon;
     public ArmourItem head;
     public ArmourItem torso;
@@ -7,7 +8,7 @@ public struct PlayerCharacterEquipped {
     public ArmourItem legs;
     public ArmourItem feet;
 
-    public PlayerCharacterEquipped(
+    public CharacterStats(
         WeaponItem weapon = null,
         ArmourItem head = null,
         ArmourItem torso = null,

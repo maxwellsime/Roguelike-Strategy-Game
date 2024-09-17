@@ -2,17 +2,18 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public class PlayerCharacter {
+public class PlayerCharacter : ICharacter 
+{
     public List<Effect> StatEffectsList { get; private set; }
     public List<Effect> TimedEffectsList { get; private set; }
     public List<Effect> PermenantEffectsList { get; private set; }
-    private PlayerCharacterStats Stats;
-    private PlayerCharacterEquipped Equipped;
+    private CharacterStats Stats;
+    private CharacterEquipped Equipped;
 
     public PlayerCharacter() {
         Stats = new PlayerCharacterStats(1, 1, 1, 1, 100, 100, 100, 1000, 100, 10f);
         WeaponItem tempWeapon = new WeaponItem();
-        Equipped = new PlayerCharacterEquipped(tempWeapon);
+        Equipped = new CharacterEquipped(tempWeapon);
     }
 
     public PlayerCharacterStats GetPlayerStats() {
@@ -134,6 +135,8 @@ public class PlayerCharacter {
     public WeaponItem GetWeapon() {
         return Equipped.weapon;
     }
+
+    public 
 
     public void GiveEffect(Effect effect) {
         if(effect.Type == EffectType.STAT) {

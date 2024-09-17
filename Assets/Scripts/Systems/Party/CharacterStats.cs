@@ -1,7 +1,8 @@
 using UnityEngine;
 
 [System.Serializable]
-public struct PlayerCharacterStats {
+public struct CharacterStats 
+{
     // General
     [Range(1, 100)] public int agility;
     [Range(1, 100)] public int strength;
@@ -21,7 +22,7 @@ public struct PlayerCharacterStats {
     public int mana;
     public float speed;
 
-    public PlayerCharacterStats(
+    public CharacterStats(
         int agility,
         int strength,
         int intellect,
