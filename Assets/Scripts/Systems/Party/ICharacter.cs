@@ -1,3 +1,5 @@
+namespace Scripts.Systems.Party;
+
 public interface ICharacter 
 {
     public CharacterStats GetStats();

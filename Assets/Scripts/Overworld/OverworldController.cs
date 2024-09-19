@@ -5,6 +5,8 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.InputSystem;
 using UnityEditor.U2D.Animation;
 
+namespace Scripts.Overworld;
+
 public class OverworldController : MonoBehaviour 
 {
     public Party party;

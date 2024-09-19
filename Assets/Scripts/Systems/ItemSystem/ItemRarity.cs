@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace Scripts.Systems.ItemSystem;
+
 public class ItemRarity : ScriptableObject {
     [SerializeField] public ItemRarityEnum Rarity { get; private set; } = ItemRarityEnum.COMMON;
     

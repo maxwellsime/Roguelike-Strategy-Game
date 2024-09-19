@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace Scripts.Combat;
+
 public class AttackHitbox : MonoBehaviour {
     public int attackDamage;
     public Collider2D attackCollider;

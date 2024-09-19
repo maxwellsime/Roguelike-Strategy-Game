@@ -1,6 +1,8 @@
 using System.Text;
 using UnityEngine;
 
+namespace Scripts.Systems.ItemSystem;
+
 public class ArmourItem : Item {
     [SerializeField] public int Defense { get; private set; }
     [SerializeField] public Effect Effect { get; private set; } = null;

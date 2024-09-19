@@ -1,5 +1,7 @@
+namespace Scripts.Systems.Party;
+
 [System.Serializable]
-public struct CharacterStats 
+public struct CharacterStats
 {
     public WeaponItem weapon;
     public ArmourItem head;

@@ -1,6 +1,8 @@
 using System.Text;
 using UnityEngine;
 
+namespace Scripts.Systems.ItemSystem;
+
 public class WeaponItem : Item {
     [SerializeField] public int Damage { get; private set; } = 1;
     [SerializeField] public int Range { get; private set; } = 0;

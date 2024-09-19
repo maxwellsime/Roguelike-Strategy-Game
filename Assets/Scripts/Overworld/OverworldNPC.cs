@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Scripts.Overworld;
+
 public class OverworldNPC : MonoBehaviour
 {
     public Vector2 desired_position;

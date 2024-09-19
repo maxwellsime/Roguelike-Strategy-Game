@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace Scripts.Systems.Party;
+
 [System.Serializable]
 public struct CharacterStats 
 {

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace Scripts.Systems.ItemSystem;
+
 public abstract class Item : ScriptableObject {
     [SerializeField] public int Id { get; private set; }
     [SerializeField] public ItemRarity Rarity { get; private set; }

@@ -1,3 +1,5 @@
+namespace Scripts.Systems.Party;
+
 [System.Serializable]
 public struct Party(
     ICharacter character1 = null,

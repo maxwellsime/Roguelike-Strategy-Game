@@ -1,6 +1,8 @@
 using System.Text;
 using UnityEngine;
 
+namespace Scripts.Systems.ItemSystem;
+
 public class MaterialItem : Item {
     [SerializeField] public MaterialType Type { get; private set; } = MaterialType.JUNK;
 

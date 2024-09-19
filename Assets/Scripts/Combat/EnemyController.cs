@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace Scripts.Combat;
+
 public class EnemyController : MonoBehaviour
 {
     private int _health = 10;
