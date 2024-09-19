@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class PlayerCharacter : ICharacter 
 {
@@ -11,12 +10,12 @@ public class PlayerCharacter : ICharacter
     private CharacterEquipped Equipped;
 
     public PlayerCharacter() {
-        Stats = new PlayerCharacterStats(1, 1, 1, 1, 100, 100, 100, 1000, 100, 10f);
+        Stats = new CharacterStats(1, 1, 1, 1, 100, 100, 100, 1000, 100, 10f);
         WeaponItem tempWeapon = new WeaponItem();
         Equipped = new CharacterEquipped(tempWeapon);
     }
 
-    public PlayerCharacterStats GetPlayerStats() {
+    public CharacterStats GetStats() {
         CalculateEffectiveStats();
         return Stats;
     }
@@ -136,14 +135,12 @@ public class PlayerCharacter : ICharacter
         return Equipped.weapon;
     }
 
-    public 
-
     public void GiveEffect(Effect effect) {
         if(effect.Type == EffectType.STAT) {
             StatEffectsList.Add(effect);
         }
         
-        if(effect.Duration != 0) {
+        if(effect.Duration > 0) {
             TimedEffectsList.Add(effect);
         } else {
             PermenantEffectsList.Add(effect);

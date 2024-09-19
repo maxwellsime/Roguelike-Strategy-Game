@@ -1,4 +1,7 @@
-public class NPC : ICharacter
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Npc : ICharacter
 {
     public List<Effect> StatEffectsList { get; private set; }
     public List<Effect> TimedEffectsList { get; private set; }
@@ -6,7 +9,7 @@ public class NPC : ICharacter
     private CharacterStats Stats;
     private CharacterEquipped Equipped;
 
-    public NPC()
+    public Npc()
     {
         Stats = new CharacterStats(1, 1, 1, 1, 100, 100, 100, 1000, 100, 10f);
         WeaponItem tempWeapon = new WeaponItem();
@@ -33,6 +36,21 @@ public class NPC : ICharacter
         return Equipped.weapon;
     }
 
+    // Combat Stats
+    public bool ChangeHealth(int value)
+    {
+        Stats.health += value;
+
+        if (Stats.health <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void GiveEffect(Effect effect)
     {
         if (effect.Type == EffectType.STAT)
@@ -40,7 +58,7 @@ public class NPC : ICharacter
             StatEffectsList.Add(effect);
         }
 
-        if (effect.Duration != 0)
+        if (effect.Duration > 0)
         {
             TimedEffectsList.Add(effect);
         }
@@ -52,7 +70,7 @@ public class NPC : ICharacter
 
     private void CalculateEffectiveStats()
     {
-        foreach (Effect effect in StatEffectsList)
+        /*foreach (Effect effect in StatEffectsList)
         {
             switch (effect.Target)
             {
@@ -64,6 +82,6 @@ public class NPC : ICharacter
                     break;
                     // Surely there is a better way of handling this...
             }
-        }
+        }*/
     }
 }

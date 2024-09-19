@@ -2,7 +2,6 @@ public interface ICharacter
 {
     public CharacterStats GetStats();
     public WeaponItem GetWeapon();
-    public bool ChangeHealth();
-    public void GiveEffect();     
-    private CharacterStats CalculateStats();
+    public bool ChangeHealth(int value);
+    public void GiveEffect(Effect effect);     
 }
