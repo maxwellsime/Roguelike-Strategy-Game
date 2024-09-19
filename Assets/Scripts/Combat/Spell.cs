@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scripts.Combat;
-
 public class Spell : ScriptableObject {
     [SerializeField] public int Id { get; private set; }
     [SerializeField] public List<Effect> Effects { get; private set; }

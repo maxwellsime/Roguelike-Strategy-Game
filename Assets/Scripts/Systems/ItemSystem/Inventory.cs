@@ -1,7 +1,5 @@
 using UnityEngine;
 
-namespace Scripts.Systems.ItemSystem;
-
 public class Inventory : ScriptableObject, IItemContainer
 {
     public Item AddItem(Item item)

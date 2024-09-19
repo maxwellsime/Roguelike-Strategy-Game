@@ -1,5 +1,3 @@
-namespace Scripts.Systems.Party;
-
 public class NPC : ICharacter
 {
     public List<Effect> StatEffectsList { get; private set; }

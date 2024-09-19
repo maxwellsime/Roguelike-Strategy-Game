@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-namespace Scripts.Systems.Party;
-
 public class PlayerCharacter : ICharacter 
 {
     public List<Effect> StatEffectsList { get; private set; }

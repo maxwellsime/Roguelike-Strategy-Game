@@ -1,7 +1,5 @@
 using UnityEngine;
 
-namespace Scripts.Overworld;
-
 [System.Serializable]
 public class Settlement : MonoBehaviour {
     public int level = 1;    

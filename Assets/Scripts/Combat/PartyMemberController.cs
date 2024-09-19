@@ -1,7 +1,5 @@
 using UnityEngine;
 
-namespace Scripts.Combat;
-
 public class PartyMemberController : MonoBehaviour {   
     private Vector2 desiredPosition;
     public PlayerCharacter character;

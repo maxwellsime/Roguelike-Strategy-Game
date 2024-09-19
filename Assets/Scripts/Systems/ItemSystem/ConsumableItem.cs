@@ -1,8 +1,6 @@
 using System.Text;
 using UnityEngine;
 
-namespace Scripts.Systems.ItemSystem;
-
 public class ConsumableItem : Item {
 
     [SerializeField] public Effect Effect { get; private set; } = null;

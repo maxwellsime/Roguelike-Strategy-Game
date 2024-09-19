@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Text;
 
-namespace Scripts.Systems;
-
 [System.Serializable]
 public class Effect : ScriptableObject {
     public int Id { get; private set; }
